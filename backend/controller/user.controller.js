@@ -61,7 +61,7 @@ const login = async (req,res) =>{
             return res.status(400).json({message:"All fields are required"});
         }
 
-        const user = await User.findOne({email:email}).select("+password");
+        const user = await User.findOne({email:email}).select("+password"); 
         if(!user || !(await bcrypt.compare(password,user.password))){
             return res.status(400).json({message:"Invalid email or password"})
         }
